@@ -32,6 +32,13 @@ function textboxValue($value){
     }else{
         return $textbox;
     }
+    function dataRequired(){
+        $sql="SELECT*FROM books";
+        $result=mysqli_query($GLOBALS['connection'],$sql);
+        if(mysqli_num_rows($result)>0){
+            return $result;
+        }
+    }
 
 }
 function message($style,$msg){
