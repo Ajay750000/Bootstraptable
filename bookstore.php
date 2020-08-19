@@ -2,7 +2,6 @@
 require_once ("functionfirst.php");
 require_once ("operation.php");
 
-
 ?>
 
 <!doctype html>
@@ -33,17 +32,17 @@ require_once ("operation.php");
         <div class="d-flex justify-content-center">
             <form action="" method="post" class="w-50">
                 <div class="pt-2">
-                    <?php  inputElement("Book ID","Book_ID","fa fa-book"); ?>
+                    <?php  inputElement("Book ID","Please Enter Book ID","fa fa-book"); ?>
                 </div>
                 <div class="pt-2">
-                    <?php  inputElement("Book_Name","B_name","fa fa-user"); ?>
+                    <?php  inputElement("Book_Name","Please Enter Book name","fa fa-user"); ?>
                 </div>
                 <div class="row pt-2">
                     <div class="col">
-                        <?php  inputElement("Book_Publisher","B_publisher","fa fa-user"); ?>
+                        <?php  inputElement("Book_Publisher"," Enter book publisher","fa fa-user"); ?>
                     </div>
                     <div class="col">
-                        <?php  inputElement("Book_Price","B_price","fa fa-id"); ?>
+                        <?php  inputElement("Book_Price","Enter book price","fa fa-id"); ?>
                     </div>
 
                 </div>
@@ -68,17 +67,25 @@ require_once ("operation.php");
             <th> Edit</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
+        <?php
+        if (isset($_POST['Refresh'])){
+            $result=dataRequired();
+            if ($result){
+                while($row=mysqli_fetch_assoc($result)){?>
         <tr>
-            <td>1</td>
-            <td>Physics</td>
-            <td>H.C Verma</td>
-            <td>350 INR</td>
-            <td><i class="fa fa-edit edit"></i> </td>
-
+            <td><?php echo $row['id'];?></td>
+            <td><?php echo $row['bookname'];?></td>
+            <td><?php echo $row['bookpublisher'];?></td>
+            <td><?php echo $row['bookprice'];?></td>
+            td><i class="fa fa-edit edit"></i> </td>
 
 
         </tr>
+               <?php }
+            }
+        }
+        ?>
         </tbody>
     </table>
 </div>
